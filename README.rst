@@ -16,6 +16,48 @@ for creating pluggable OAuth components for Pyramid.
 for token revocation. While this shouldn't be hard to add, it wasn't a priority
 to get the initial version released.
 
+Getting started
+---------------
+
+Enable Pyramid OAuthlib in your project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Add the package to `setup.py`::
+    
+    ...
+    
+    setup(
+        ...
+        
+        install_requires = [
+            'pyramid',
+            ...
+            'pyramid_oauthlib',
+            ...
+        ]
+        
+        ...
+    )
+
+2. Run `pip install` to pull in new dependencies (assumes virtual env)::
+    
+    (venv) ~/projectdir $ pip install -e .
+
+
+3. Include Pyramid OAuthlib in your app configuration (for instance in `project/__init__.py`)::
+    
+    def main(global_config, **settings):
+        
+        config = Configurator(settings=settings)
+        config.include('pyramid_mako')
+        config.include('pyramid_oauthlib')          <- added here
+        
+        ...
+        # rest of the route/view configuration follows..
+    
+    
+    
+
 Usage Overview
 --------------
 
