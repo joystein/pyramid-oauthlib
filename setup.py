@@ -32,6 +32,10 @@ with open(os.path.join(here, 'README.rst')) as f:
 with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
+# https://stackoverflow.com/a/41398850
+test_deps = ['mock', 'pytest', 'pytest-cov']
+extra_deps = {'test': test_deps}
+
 setup(
     name='pyramid_oauthlib',
     version='0.3.0',
@@ -52,9 +56,10 @@ setup(
     cmdclass={'test': PyTest},
     exclude_package_data={'': ['.gitignore']},
     include_package_data=True,
-    install_requires=['pyramid', 'oauthlib'],
     packages=find_packages(),
     setup_requires=['setuptools_git'],
-    tests_require=['mock', 'pytest', 'pytest-cov'],
+    install_requires=['pyramid', 'oauthlib'],
+    tests_require=test_deps,
+    extras_require=extra_deps,
     zip_safe=False,
 )
